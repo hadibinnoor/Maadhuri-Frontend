@@ -1,8 +1,13 @@
+import { useContext } from "react";
 import Container from "../../components/Container/Container";
 import Navbar from "../../components/Navbar/Navbar";
 import { StyledHorizontalDivider, StyledInput, StyledInputBrand, StyledInputContainer, StyledLoginContainer, StyledLoginLeft, StyledLoginRight, StyledLoginTitle, StyledTitleText } from "./Login.styled";
+import { FireBaseContext } from "../../contexts/firebase.context";
 
 export default function Login() {
+
+    const authContext = useContext(FireBaseContext);
+
     return (
         <Container>
             <Navbar />
