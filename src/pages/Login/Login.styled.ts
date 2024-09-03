@@ -9,6 +9,7 @@ export const StyledLoginContainer = styled.div`
 
     display: flex;
     flex-direction: row;
+    
 
 
     @media screen and (max-width: 1150px) {
@@ -87,7 +88,7 @@ export const StyledLoginTitle = styled.div`
 export const StyledTitleText = styled.div<{passthrough?: string}>`
     text-align: right;
     font-weight: 700;
-    font-size: 3.5rem;
+    font-size: 3.1rem;
     line-height: 81px;
     background-image: linear-gradient(to right, red, purple);
     background-clip: text;
@@ -113,7 +114,7 @@ export const StyledInputContainer = styled.div`
 export const StyledInput = styled.input<{widthOverride?: string}>`
     /* background-color: pink; */
     border: none;
-    width: ${(props) => props.widthOverride ? props.widthOverride : "50%"};
+    width: ${(props) => props.widthOverride || "50%"};
     outline: none;
     border-radius: 30px;
     height: 3.2rem;

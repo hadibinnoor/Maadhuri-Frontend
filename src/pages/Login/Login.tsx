@@ -1,16 +1,16 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import Container from "../../components/Container/Container";
 import Navbar from "../../components/Navbar/Navbar";
 import { StyledHorizontalDivider, StyledInput, StyledInputBrand, StyledInputContainer, StyledLoginContainer, StyledLoginLeft, StyledLoginRight, StyledLoginTitle, StyledTitleText } from "./Login.styled";
-import { FireBaseContext } from "../../contexts/firebase.context";
+// import { FireBaseContext } from "../../contexts/firebase.context";
 
 export default function Login() {
 
-    const authContext = useContext(FireBaseContext);
+    // const authContext = useContext(FireBaseContext);
 
     return (
         <Container>
-            <Navbar />
+            <Navbar type="home" />
             <StyledLoginContainer>
                 <StyledLoginLeft>
                     <StyledInputContainer>
@@ -40,7 +40,7 @@ export default function Login() {
                             {`India's First
                         Generative AI`}
                         </StyledTitleText>
-                        <StyledTitleText passthrough={"true"}>
+                        <StyledTitleText style={{ fontSize: '4rem'}} passthrough={"true"}>
                             {`Campus Radio`}
                         </StyledTitleText>
                     </StyledLoginTitle>
