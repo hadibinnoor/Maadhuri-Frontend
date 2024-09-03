@@ -5,6 +5,7 @@ import Test from './pages/Test/Test.page';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './data/theme';
 import Login from './pages/Login/Login';
+import Validate from './pages/Validate/Validate';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
 					<Routes>
 						<Route path='/test' element={<Test />} />
 						<Route path='/' element={<Login />} />
+						<Route path='/validate' element={<Validate />} />
 					</Routes>
 				</BrowserRouter>
 			</FireBaseProvider>

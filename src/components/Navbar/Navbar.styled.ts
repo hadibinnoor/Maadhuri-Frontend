@@ -44,16 +44,16 @@ export const StyledNavRight = styled.div`
 `
 
 export const StyledBrandImage = styled(ImageBlueprint)`
-    height: 40px;
+    height: 30px;
 `
 
 export const StyledBrandName = styled(ImageBlueprint)`
-    height: 50px;
+    height: 30px;
     margin-left: 1rem;
 `
 
 export const StyledDUKLogo = styled(ImageBlueprint)`
-    height: 70px;
+    height: 50px;
     margin-right: 15%;
 `
 
@@ -70,7 +70,7 @@ export const StyledNavBrandRight = styled.div`
 export const StyledDivider = styled.div`
     border-left:1px solid rgba(255, 255, 255, 0.52); 
     border-right:1px solid rgba(255, 255, 255, 0.52); 
-    height: 70px;
+    height: 50px;
     margin: 0 1.3rem;
 
 
@@ -91,4 +91,19 @@ export const StyledNavBrandNameRight = styled.div`
 export const StyledNavBrandNameTitle = styled.div`
     text-align: right;
     color: white;
+    font-size: 0.8rem;
+`
+
+export const StyledAdmin = styled.div`
+    border-style: solid;
+    border-color: ${({ theme }) => theme.accent1};
+    border-radius: 50%;
+    border-width: 3px;
+    height: 100%;
+    width: 100%;
+    min-width: 40px;
+    min-height:40px;
+    max-width: 30px;
+    max-height: 30px;
+    margin: 0 2rem;
 `
