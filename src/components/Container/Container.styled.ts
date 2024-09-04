@@ -6,7 +6,7 @@ export const StyledContainer = styled.div`
     min-height: 100vh;
 
     max-width: 100vw;
-    max-height: 100vh;
+    /* max-height: 100vh; */
 
     height: 100%;
     width: 100%;

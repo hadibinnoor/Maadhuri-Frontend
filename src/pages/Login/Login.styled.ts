@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledLoginContainer = styled.div`
-    height: 100vh;
+    height: calc(100vh - 10rem);
     width: 100%;
     display: flex;
     background-color: ${({ theme }) => theme.primary};
@@ -69,7 +69,7 @@ export const StyledHorizontalDivider = styled.div`
 export const StyledLoginTitle = styled.div`
     display: flex;
     align-items: flex-end;
-    margin-right: 7rem;
+    margin-right: 15%;
     width: 100%;
     justify-content: center;
     flex-direction: column;

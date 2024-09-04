@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const StyledValidateContainer = styled.div`
-    height: 100vh;
+    height: calc(100vh - 10rem);
     width: 100%;
     display: flex;
     background-color: ${({ theme }) => theme.primary};
