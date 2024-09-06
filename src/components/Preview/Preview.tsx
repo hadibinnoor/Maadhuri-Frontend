@@ -1,16 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { DataContext } from "../../contexts/data.context";
-import type { Data } from "../../contexts/data.context";
-import { StyledCard, StyledEditIcon, StyledLLMOutput, StyledPreviewContainer, StyledPreviewInfo, StyledPreviewNode, StyledPreviewNodeLeft, StyledPreviewNodeRight, StyledPreviewTitle, StyledValidateText } from "./Preview.styled";
+import { StyledLLMOutput, StyledPreviewContainer, StyledPreviewNode } from "./Preview.styled";
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 
 import DialogTitle from '@mui/material/DialogTitle';
 import styled, { ThemeContext } from "styled-components";
-import { Box, Switch } from "@mui/material";
+import { Box, CircularProgress, Switch } from "@mui/material";
 import { IoClose } from "react-icons/io5";
 import { StyledButton } from "../Button/Button.styled";
+import PreviewNode from "./PreviewNode";
+import AudioCard from "./AudioCard";
 
 const StyledSwitch = styled(Switch)`
     ::before {
@@ -23,41 +24,8 @@ const StyledSwitch = styled(Switch)`
 
 `
 
-function PreviewNode({ keyName, value, handleOpen, handleClose }: { value: Data[keyof Data], keyName: keyof Data, handleOpen: any, handleClose: any }) {
-    const colorCode = {
-        pending: 'yellow',
-        rejected: 'red',
-        approved: 'green'
-    }
-
-    return (
-
-        <StyledPreviewNode>
-            <StyledPreviewNodeLeft>
-                <StyledPreviewTitle>
-                    {keyName}
-                </StyledPreviewTitle>
-                <StyledPreviewInfo
-                    txtcolor={colorCode[value.state]}
-                >
-                    pending review
-                </StyledPreviewInfo>
-            </StyledPreviewNodeLeft>
-
-            <StyledPreviewNodeRight>
-                <StyledValidateText>
-                    Validate
-                </StyledValidateText>
-                <StyledEditIcon
-                    onClick={() => handleOpen(keyName)}
-                />
-            </StyledPreviewNodeRight>
-        </StyledPreviewNode>
 
 
-
-    )
-}
 
 export default function Preview() {
     const [open, setOpen] = useState<boolean>(false);
@@ -65,19 +33,21 @@ export default function Preview() {
     const components = []
     const defaultState: any = {}
     const { data, setData } = useContext(DataContext);
-    const themeContext: any = useContext(ThemeContext)
-    const theme = useContext(themeContext)
+    const themeContext: any = useContext(ThemeContext);
+    const theme = useContext(themeContext);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [doneLoading, setDoneLoading] = useState<boolean>(false);
+
+    const audioBoxRef = useRef<HTMLDivElement>(null);
 
 
     const handleOpen = (key: string) => {
         setOpen(true);
         selectedNode(key)
-        console.log("opened", data[key])
+        // console.log("opened", data[key])
     };
 
     const handleClose = () => {
-        // setError(false);
-        // setErrorText('')
         setOpen(false);
     };
 
@@ -85,9 +55,25 @@ export default function Preview() {
 
     }
 
+    const handleAudioGenerate = (ev: any) => {
+        ev.preventDefault()
+        setLoading(true);
+        setDoneLoading(false);
+
+        if (audioBoxRef.current)
+            audioBoxRef.current.scrollIntoView({ behavior: 'smooth' })
+
+        console.log("click")
+
+
+    }
+
+
+    let i = 0;
     for (const [key, v] of Object.entries(data)) {
-        components.push(<PreviewNode handleOpen={handleOpen} handleClose={handleClose} keyName={key as any} value={v} />)
+        components.push(<PreviewNode key={i} handleOpen={handleOpen} handleClose={handleClose} keyName={key as any} value={v} />)
         defaultState[key] = false
+        i++;
     }
 
 
@@ -105,12 +91,15 @@ export default function Preview() {
                     }}
                 >
                     <StyledButton
-                        color={themeContext.accent2}
-                        style={{
-                            background: 'rgba(189, 0, 255, 0.3)'
+                        variant="contained"
+                        sx={{
+                            backgroundColor: themeContext.accent2
                         }}
+                    // style={{
+                    //     background: 'rgba(189, 0, 255, 0.3)'
+                    // }}
                     >
-                        Generate Audio
+                        Generate Radio Content
                     </StyledButton>
                 </StyledPreviewNode>
             </StyledPreviewContainer>
@@ -139,7 +128,7 @@ export default function Preview() {
                     <Box
                         sx={{
                             overflowY: 'scroll',
-                            height: '100%',
+                            minHeight: '100%',
                             display: 'flex',
                             justifyContent: 'flex-start',
                             alignItems: 'center',
@@ -149,7 +138,7 @@ export default function Preview() {
                         <Box
 
                             sx={{
-                                position: 'sticky',
+                                position: 'fixed',
                                 display: 'flex',
                                 justifyContent: 'flex-end',
                                 alignItems: 'center',
@@ -157,7 +146,8 @@ export default function Preview() {
                                 fontSize: '2rem',
                                 width: "100%",
                                 maxHeight: '10%',
-                                top: 0
+                                top: 0,
+                                right: 0
                             }}
                         >
                             <IoClose
@@ -170,10 +160,11 @@ export default function Preview() {
                                 alignItems: 'center',
                                 justifyContent: 'flex-start',
                                 width: "90%",
-                                fontSize: '1.5rem'
+                                fontSize: '1.5rem',
+                                marginTop: '2rem'
                             }}
                         >LLM Output</Box>
-                        <StyledLLMOutput>{data[node as any].text}</StyledLLMOutput>
+                        <StyledLLMOutput defaultValue={data[node as any].text} />
                         {/* <StyledLLMOutput>{data[node as any].text}</StyledLLMOutput>
 
                         <StyledLLMOutput>{data[node as any].text}</StyledLLMOutput> */}
@@ -190,11 +181,56 @@ export default function Preview() {
                             }}
                         >
                             <StyledButton
-                                color={themeContext.accent2}
+                                disabled={loading}
+                                // color={themeContext.accent2}
+                                variant="contained"
+                                onClick={handleAudioGenerate}
+                                sx={{
+                                    backgroundColor: themeContext.accent2
+                                }}
                             >
                                 Generate Audio
                             </StyledButton>
                         </Box>
+
+                        <Box
+                            ref={audioBoxRef}
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                width: "90%",
+                                fontSize: '1.5rem',
+                                minHeight: '50vh'
+                            }}
+                        >
+                            {!doneLoading ? <>
+                                <AudioCard />
+                                
+
+                            </> : (
+                                !loading ? <></> :
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', 'justifyContent': 'center', width: "100%" }}>
+                                        <CircularProgress size={"5rem"} sx={{ color: themeContext.accent2 }} />
+                                        <DialogTitle sx={{ marginTop: '4rem' }}>Loading Audio</DialogTitle>
+                                    </Box>
+                            )}
+                        </Box>
+
+                        {/* {doneLoading ? <>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'flex-start',
+                                    width: "90%",
+                                    fontSize: '1.5rem',
+                                    // height: '50vh'
+                                }}
+                            >
+                                AI Generated Audio
+                            </Box>
+                        </> : (!loading ? <></> : <Box sx={{ marginTop: '5rem', minHeight: '50%'}}><CircularProgress size={"5rem"} sx={{ color: themeContext.accent2 }} /></Box>)} */}
 
                         <DialogActions>
                             <Button onClick={handleClose}>Cancel</Button>

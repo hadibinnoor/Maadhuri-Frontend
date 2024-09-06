@@ -1,5 +1,4 @@
 import { CircularProgress } from "@mui/material";
-import { MdEdit as Edit } from "react-icons/md";
 import styled from "styled-components";
 import { FaEye } from "react-icons/fa";
 
@@ -24,7 +23,7 @@ export const StyledPreviewNode = styled.div`
     background-color: ${({ theme }) => theme.primary};
     justify-content: center;
     align-items: center;
-    border-radius: 30px;
+    border-radius: 10px;
     box-shadow: 0 0 2px 1px black;
 
     &:hover {
