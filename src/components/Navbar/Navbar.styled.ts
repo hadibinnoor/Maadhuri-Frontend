@@ -1,16 +1,21 @@
 import styled from "styled-components";
 
 
-export const StyledNavContainer = styled.div`
+export const StyledNavContainer = styled.div<{ nav: 'home' | 'dash' }>`
     width: 100%;
     max-height: 300px;
     height: 10rem;
-    background-color: ${({ theme }) => theme.primary};
+    background-color: transparent;
+    /* background-color: ${(props) => props.nav == 'home' ? 'transparent' : props.theme.primary}; */
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+
+    /* ${(props) => props.nav == 'home' && `box-shadow: 0 0 25px 0 red;
+    z-index: 99;
+    box-sizing: border-box;`} */
 
 `
 
@@ -44,16 +49,16 @@ export const StyledNavRight = styled.div`
 `
 
 export const StyledBrandImage = styled(ImageBlueprint)`
-    height: 30px;
+    height: 50px;
 `
 
 export const StyledBrandName = styled(ImageBlueprint)`
-    height: 30px;
-    margin-left: 1rem;
+    height: 40px;
+    margin-left: 0.5rem;
 `
 
 export const StyledDUKLogo = styled(ImageBlueprint)`
-    height: 50px;
+    height: 60px;
     margin-right: 15%;
 `
 
@@ -91,19 +96,19 @@ export const StyledNavBrandNameRight = styled.div`
 export const StyledNavBrandNameTitle = styled.div`
     text-align: right;
     color: white;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 `
 
 export const StyledAdmin = styled.div`
     border-style: solid;
     border-color: ${({ theme }) => theme.accent1};
     border-radius: 50%;
-    border-width: 3px;
+    border-width: 4px;
     height: 100%;
     width: 100%;
     min-width: 40px;
     min-height:40px;
-    max-width: 30px;
-    max-height: 30px;
-    margin: 0 2rem;
+    max-width: 50px;
+    max-height: 50px;
+    margin: 0 5rem 0 1rem;
 `

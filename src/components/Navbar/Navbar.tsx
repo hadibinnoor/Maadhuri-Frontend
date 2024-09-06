@@ -2,18 +2,18 @@ import { StyledAdmin, StyledBrandImage, StyledBrandName, StyledDivider, StyledDU
 import logo from '../../assets/logo.svg'
 import logoname from '../../assets/logoname.svg'
 import duklogo from '../../assets/duklogo.svg'
-
+import newlogo from '../../assets/newlogo.svg'
 
 
 export default function Navbar({ type }: { type: 'home' | 'dash' }) {
 
 
     return (
-        <StyledNavContainer>
+        <StyledNavContainer nav={type}>
             <StyledNavLeft>
                 <StyledNavBrand>
                     <StyledBrandImage
-                        src={logo}
+                        src={newlogo}
                     />
                     <StyledBrandName
                         src={logoname}
@@ -44,10 +44,10 @@ export default function Navbar({ type }: { type: 'home' | 'dash' }) {
                     <StyledNavBrandRight>
                         <StyledNavBrandNameRight>
                             <StyledNavBrandNameTitle
-                                style={{ fontWeight: 300, color: "rgba(255, 255, 255, 0.8)", fontSize: "0.8rem" }}
+                                style={{ fontWeight: 300, color: "rgba(255, 255, 255, 0.8)", fontSize: "0.9rem" }}
                             >Good Morning</StyledNavBrandNameTitle>
                             <StyledNavBrandNameTitle
-                                style={{ fontWeight: 700, fontSize: '1.2rem' }}
+                                style={{ fontWeight: 700, fontSize: '1.4rem' }}
                             >Admin</StyledNavBrandNameTitle>
                         </StyledNavBrandNameRight>
 

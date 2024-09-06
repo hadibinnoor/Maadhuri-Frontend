@@ -35,11 +35,28 @@ font-family: "Open Sans", sans-serif;
 a {
 	text-decoration: none;
 }
-/* scrollBar */
-::-webkit-scrollbar {
-	width: 8px;
 
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
 }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 
 img {
 	-webkit-touch-callout: none;

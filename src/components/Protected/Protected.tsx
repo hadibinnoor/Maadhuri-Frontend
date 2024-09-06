@@ -9,7 +9,7 @@ export default function Protected({ children }: any) {
 
     return (
         <>
-            {user ? (children) : (<Navigate to={'/login'} />)}
+            {user ? (children) : (<Navigate to={'/'} />)}
         </>
     )
 }
