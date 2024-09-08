@@ -1,19 +1,9 @@
 import { createContext, useState } from 'react';
 
-type stateTypes = 'approved'|'rejected'|'pending';
+type stateTypes = 'approved' | 'rejected' | 'pending';
 
 type Data = {
-    script1: {
-        text: string | null,
-        audio: string | null,
-        state: stateTypes
-    },
-    script2: {
-        text: string | null,
-        audio: string | null,
-        state: stateTypes
-    },
-    script3: {
+    [key: string]: {
         text: string | null,
         audio: string | null,
         state: stateTypes

@@ -37,24 +37,32 @@ a {
 }
 
 
-/* width */
+/* Scrollbar width */
 ::-webkit-scrollbar {
-  width: 5px;
+	height: 5px;
+    width: 5px;  /* Set the desired scrollbar width */
 }
 
-/* Track */
+/* Remove the top and bottom arrow buttons */
+::-webkit-scrollbar-button {
+    display: none;  /* This removes the arrow buttons */
+}
+
+/* Scrollbar track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+    background: #f1f1f1; /* Set the background of the track */
+	border-radius: 6px;
 }
 
-/* Handle */
+/* Scrollbar handle (the draggable part) */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+    background: #888;  /* Set the color of the scrollbar handle */
+    border-radius: 6px;  /* Optional: round the scrollbar edges */
 }
 
-/* Handle on hover */
+/* Scrollbar handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+    background: #555;  /* Darker color when hovering over the handle */
 }
 
 

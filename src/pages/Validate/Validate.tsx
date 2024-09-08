@@ -12,6 +12,7 @@ import HorizontalDivider from "../../components/Divider/HorizontalDivider";
 import Background from "../../components/Background/Background";
 import { StyledButton } from "../../components/Button/Button.styled";
 import { ThemeContext } from "styled-components";
+import { IoIosInformationCircleOutline } from "react-icons/io";
 
 
 export default function Validate() {
@@ -73,9 +74,13 @@ export default function Validate() {
                                     return (
                                         <StyledParametersHeading>
                                             <StyledButton
+                                                variant="contained"
                                                 key={i}
                                                 onClick={() => handleParameterClick(x, i)}
-                                                color={selectedParameter[i] ? theme.accent1 : 'rgb(133, 133, 133)'}
+                                                sx={{
+                                                    backgroundColor: selectedParameter[i] ? theme.accent1 : 'rgb(133, 133, 133)',
+                                                    width: '50%'
+                                                }}
                                             >{parameters[i]}</StyledButton>
                                         </StyledParametersHeading>
                                     )
@@ -102,7 +107,10 @@ export default function Validate() {
                         <StyledGenerateBtnContainer>
                             <StyledButton
                                 onClick={handleGenerateClick}
-                                color={theme.accent2}
+                                sx={{
+                                    backgroundColor: theme.accent2,
+                                    color: theme.text
+                                }}
                             >
                                 Generate
                             </StyledButton>
@@ -116,16 +124,20 @@ export default function Validate() {
                     <StyledLLMOutputContainer>
                         {doneLoadingData ? <Preview /> : (!loadingData ?
                             <LLMOutputPlaceholder>
-                                <LLMOutputPlaceholderText style={{ fontSize: '8rem', marginBottom: '1.5rem' }}>
-                                    <MdMessage />
+                                <LLMOutputPlaceholderText style={{ fontSize: '4rem', marginBottom: '1.5rem', fontWeight: 100 }}>
+                                    <IoIosInformationCircleOutline />
                                 </LLMOutputPlaceholderText>
                                 <LLMOutputPlaceholderText
-                                    style={{ fontWeight: 300, fontSize: "1.3rem" }}
+                                    style={{ fontWeight: 300, fontSize: "1.2rem", width: "100%" }}
                                 >
+                                    {/* <IoIosInformationCircleOutline fontSize={"2.5rem"} style={{
+                                        marginRight: '0.5rem',
+                                        fontWeight: 500
+                                    }} /> */}
                                     Use the parameters to generate radio content
                                 </LLMOutputPlaceholderText>
                             </LLMOutputPlaceholder>
-                            : <StyledCircularProgress size="5rem" />)}
+                            : <StyledCircularProgress style={{ color: theme.accent2 }} size="5rem" />)}
                     </StyledLLMOutputContainer>
 
                 </StyledValidateRight>

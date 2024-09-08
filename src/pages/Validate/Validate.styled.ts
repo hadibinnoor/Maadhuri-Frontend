@@ -50,6 +50,7 @@ export const StyledValidateLeftParameters = styled.div`
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    margin-top: 1rem;
 `
 
 export const StyledParametersHeading = styled.div`
@@ -129,7 +130,7 @@ export const StyledLLMScoreContainer = styled.div`
 `
 
 export const StyledTextArea = styled.textarea`
-    height: 90%;
+    height: 30vh;
     overflow-y: auto;
     width: 100%;
     font-size: 1rem;
@@ -229,6 +230,6 @@ export const StyledParametersContainer = styled.div`
     width: 80%;
     margin-bottom: 3rem;
     background-color: ${({ theme }) => theme.tertiary};
-    border-radius: 30px;
+    border-radius: 10px;
     margin-left: 2rem;
 `

@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import firebase from 'firebase/app';
 import { browserLocalPersistence, getAuth, inMemoryPersistence, User } from 'firebase/auth';
 import { app as FirebaseApp } from '../structures/database';
@@ -13,7 +13,7 @@ const FireBaseProvider = ({ children }: any) => {
     useEffect(() => {
         const auth = getAuth(app);
         // const rememberme = getPersistence();
-        auth.setPersistence(inMemoryPersistence)
+        auth.setPersistence(browserLocalPersistence)
         // auth.setPersistence(rememberme === PersistenceType.REMEMBER_USER ? browserLocalPersistence : inMemoryPersistence)
         const unsub = auth.onAuthStateChanged((user) => {
             console.log('state change', user);

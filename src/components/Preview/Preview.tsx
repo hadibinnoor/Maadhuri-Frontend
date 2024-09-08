@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { DataContext } from "../../contexts/data.context";
 import { StyledLLMOutput, StyledPreviewContainer, StyledPreviewNode } from "./Preview.styled";
 import Button from '@mui/material/Button';
@@ -12,6 +12,7 @@ import { IoClose } from "react-icons/io5";
 import { StyledButton } from "../Button/Button.styled";
 import PreviewNode from "./PreviewNode";
 import AudioCard from "./AudioCard";
+import getAudio from "../../api/getAudio";
 
 const StyledSwitch = styled(Switch)`
     ::before {
@@ -49,6 +50,8 @@ export default function Preview() {
 
     const handleClose = () => {
         setOpen(false);
+        setLoading(false);
+        setDoneLoading(false);
     };
 
     const onSubmit = () => {
@@ -56,15 +59,55 @@ export default function Preview() {
     }
 
     const handleAudioGenerate = (ev: any) => {
-        ev.preventDefault()
+        ev.preventDefault();
+        setTimeout(() => {
+            audioBoxRef.current?.scrollIntoView({ block: "end", behavior: 'smooth' });
+        }, 0);
+
         setLoading(true);
         setDoneLoading(false);
 
-        if (audioBoxRef.current)
-            audioBoxRef.current.scrollIntoView({ behavior: 'smooth' })
 
-        console.log("click")
 
+
+        getAudio().then(x => {
+            let lData = data;
+            lData[node].audio = (x as any).audio
+            setDoneLoading(true)
+            setLoading(false)
+            setData({ ...lData });
+
+            setTimeout(() => {
+                audioBoxRef.current?.scrollIntoView({ block: "end", behavior: 'smooth' });
+            }, 0);
+
+            // console.log(x);
+
+        })
+
+
+    }
+
+    const handleApprove = (ev: any) => {
+        ev.preventDefault()
+
+        let lData = data;
+        let lDataNode = lData[node];
+        lData[node] = { ...lDataNode, state: 'approved' }
+
+        setData({ ...lData })
+        handleClose();
+
+    }
+
+    const handleReject = (ev: any) => {
+        ev.preventDefault()
+        let lData = data;
+        let lDataNode = lData[node];
+        lData[node] = { ...lDataNode, state: 'rejected' }
+
+        setData({ ...lData })
+        handleClose();
 
     }
 
@@ -75,6 +118,10 @@ export default function Preview() {
         defaultState[key] = false
         i++;
     }
+
+    useEffect(() => {
+        console.log(data)
+    }, [])
 
 
     return (
@@ -91,13 +138,11 @@ export default function Preview() {
                     }}
                 >
                     <StyledButton
+                        
                         variant="contained"
                         sx={{
                             backgroundColor: themeContext.accent2
                         }}
-                    // style={{
-                    //     background: 'rgba(189, 0, 255, 0.3)'
-                    // }}
                     >
                         Generate Radio Content
                     </StyledButton>
@@ -164,7 +209,7 @@ export default function Preview() {
                                 marginTop: '2rem'
                             }}
                         >LLM Output</Box>
-                        <StyledLLMOutput defaultValue={data[node as any].text} />
+                        <StyledLLMOutput defaultValue={data[node].text || ""} />
                         {/* <StyledLLMOutput>{data[node as any].text}</StyledLLMOutput>
 
                         <StyledLLMOutput>{data[node as any].text}</StyledLLMOutput> */}
@@ -189,7 +234,7 @@ export default function Preview() {
                                     backgroundColor: themeContext.accent2
                                 }}
                             >
-                                Generate Audio
+                                {(data[node].audio || doneLoading) ? 'Regenerate Audio' : 'Generate Audio'}
                             </StyledButton>
                         </Box>
 
@@ -197,16 +242,29 @@ export default function Preview() {
                             ref={audioBoxRef}
                             sx={{
                                 display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
+                                alignItems: 'flex-start',
+                                justifyContent: 'flex-start',
                                 width: "90%",
                                 fontSize: '1.5rem',
-                                minHeight: '50vh'
+                                flexDirection: 'column',
+                                minHeight: doneLoading ? 'auto' : 'auto'
                             }}
                         >
-                            {!doneLoading ? <>
+                            {(data[node].audio && !loading) ? <>
+
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'flex-start',
+                                        width: "90%",
+                                        fontSize: '1.5rem',
+                                 
+                                        marginBottom: '2rem'
+                                    }}
+                                >AI Generated Audio</Box>
                                 <AudioCard />
-                                
+
 
                             </> : (
                                 !loading ? <></> :
@@ -217,27 +275,45 @@ export default function Preview() {
                             )}
                         </Box>
 
-                        {/* {doneLoading ? <>
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'flex-start',
-                                    width: "90%",
-                                    fontSize: '1.5rem',
-                                    // height: '50vh'
-                                }}
+
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'flex-end',
+                                alignItems: 'center',
+                                padding: '2rem 4rem',
+                                fontSize: '2rem',
+                                width: "100%",
+                                marginTop: "3rem"
+                            }}
+                        >
+                            <StyledButton
+                                disabled={!((data[node].audio || doneLoading) && !loading)}
+
+                                // color={themeContext.accent2}
+                                color='error'
+                                variant="contained"
+                                onClick={handleReject}
+
                             >
-                                AI Generated Audio
-                            </Box>
-                        </> : (!loading ? <></> : <Box sx={{ marginTop: '5rem', minHeight: '50%'}}><CircularProgress size={"5rem"} sx={{ color: themeContext.accent2 }} /></Box>)} */}
+                                Reject
+                            </StyledButton>
+                            <StyledButton
+                                disabled={!((data[node].audio || doneLoading) && !loading)}
+                                // color={themeContext.accent2}
+                                color='success'
+                                variant="contained"
+                                onClick={handleApprove}
+                                sx={{
+                                    marginLeft: "2rem"
+                                }}
 
-                        <DialogActions>
-                            <Button onClick={handleClose}>Cancel</Button>
-                            <Button type="submit">Confirm</Button>
-                        </DialogActions>
+                            >
+                                Approve
+                            </StyledButton>
+                        </Box>
 
-                        {/* <StyledSwitch /> */}
+
 
                     </Box>
 

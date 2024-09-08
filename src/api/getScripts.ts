@@ -14,17 +14,17 @@ Phasellus vel mauris vel risus lobortis gravida. Mauris consequat mauris at ultr
     const sampleData: Data = {
         script1: {
             text: sampleText,
-            audio: "sample",
+            audio: null,
             state: 'pending'
         },
         script2: {
             text: "aaaa".repeat(100),
-            audio: "sample",
+            audio: null,
             state: 'pending'
         },
         script3: {
             text: "bbb".repeat(100),
-            audio: "sample",
+            audio: null,
             state: 'pending'
         }
     }

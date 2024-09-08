@@ -12,5 +12,13 @@ export const StyledButton = styled(Button)`
     /* background-color: red; */
     transition: background-color 0.3s ease;
 
+
+    &:disabled {
+        background-color: ${({ theme }) => theme.primary} !important;
+        color: ${({ theme }) => 'grey'} !important;
+        cursor: not-allowed !important;
+        pointer-events: auto !important;
+    }
+
 `
 
