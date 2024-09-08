@@ -78,7 +78,7 @@ export const StyledSequenceNode = styled.div`
     background-color: ${({ theme }) => theme.tertiary};
     height: 90%;
     max-height: 90%;
-    width: 20%;
+    width: 25%;
     min-width: 20%;
     margin: 0 2rem;
     border-radius: 10px;

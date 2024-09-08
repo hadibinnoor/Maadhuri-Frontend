@@ -131,6 +131,7 @@ export default function Content() {
             if (audioFile.file) {
 
                 formData.append('audio_files', audioFile.file);
+                // console.log(audioFile)
                 formData.append('order', String(i + 1));
                 formData.append('bg_needed', String(audioFile.background))
             }
@@ -155,6 +156,9 @@ export default function Content() {
                 setAudioURL(data.processed_audio_url)
             } else {
                 console.log("Failed to upload files.");
+                alertContext.setSeverity('error')
+                alertContext.setAlertText('Server acknowledgment error')
+                alertContext.setAlert(true)
             }
         } catch (error) {
             console.error("Error uploading files:", error);
