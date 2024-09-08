@@ -1,11 +1,10 @@
 import { StyledEditIcon, StyledPreviewInfo, StyledPreviewNode, StyledPreviewNodeLeft, StyledPreviewNodeRight, StyledPreviewTitle, StyledValidateText } from "./Preview.styled"
-import { DataContext, type Data } from "../../contexts/data.context";
-import { useContext } from "react";
+import { type Data } from "../../contexts/data.context";
+// import { useContext } from "react";
 import { Tooltip } from "@mui/material";
 
 
-
-export default function PreviewNode({ keyName, value, handleOpen, handleClose }: { value: Data[keyof Data], keyName: keyof Data, handleOpen: any, handleClose: any }) {
+export default function PreviewNode({ keyName, value, handleOpen }: { value: Data[keyof Data], keyName: keyof Data, handleOpen: any, handleClose: any }) {
     const colorCode = {
         pending: ['yellow', 'Pending Review'],
         rejected: ['red', 'Prompt Rejected'],

@@ -5,7 +5,7 @@ export const StyledButton = styled(Button)`
     border: none;       
     text-decoration: none;
     padding: 0.5rem 3rem;
-    border-radius: 30px;
+    /* border-radius: 30px; */
     font-size: 1.1rem;
     color: ${({ theme }) => theme.text};
     /* background-color: ${(props) => props.color ?? 'rgb(133, 133, 133)'}; */
@@ -15,7 +15,7 @@ export const StyledButton = styled(Button)`
 
     &:disabled {
         background-color: ${({ theme }) => theme.primary} !important;
-        color: ${({ theme }) => 'grey'} !important;
+        color: 'grey' !important;
         cursor: not-allowed !important;
         pointer-events: auto !important;
     }

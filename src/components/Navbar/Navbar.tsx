@@ -1,5 +1,4 @@
 import { StyledAdmin, StyledBrandImage, StyledBrandName, StyledDivider, StyledDUKLogo, StyledNavBrand, StyledNavBrandNameRight, StyledNavBrandNameTitle, StyledNavBrandRight, StyledNavContainer, StyledNavLeft, StyledNavRight } from "./Navbar.styled";
-import logo from '../../assets/logo.svg'
 import logoname from '../../assets/logoname.svg'
 import duklogo from '../../assets/duklogo.svg'
 import newlogo from '../../assets/newlogo.svg'

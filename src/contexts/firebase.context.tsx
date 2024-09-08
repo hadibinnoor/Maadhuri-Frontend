@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import firebase from 'firebase/app';
-import { browserLocalPersistence, getAuth, inMemoryPersistence, User } from 'firebase/auth';
+import { browserLocalPersistence, getAuth, User } from 'firebase/auth';
 import { app as FirebaseApp } from '../structures/database';
 
 const FireBaseContext = createContext<{ app: firebase.FirebaseApp, user: User | null | undefined }>(null as any);

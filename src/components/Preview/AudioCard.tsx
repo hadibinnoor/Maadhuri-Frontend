@@ -1,11 +1,11 @@
-import { Card, Box, CardContent, Typography, IconButton, CardMedia } from '@mui/material'
-import { SkipNext, SkipPrevious, PlayArrow } from '@mui/icons-material'
-import musicIcon from '../../assets/386a788b-59d5-4f4d-be84-9f5bc1088bc3.webp'
-import { useContext } from 'react'
-import { ThemeContext } from 'styled-components'
+import { Card, CardContent, Typography, CardMedia } from '@mui/material'
+// import { SkipNext, SkipPrevious, PlayArrow } from '@mui/icons-material'
+// import musicIcon from '../../assets/386a788b-59d5-4f4d-be84-9f5bc1088bc3.webp'
+// import { useContext } from 'react'
+// import { ThemeContext } from 'styled-components'
 
 export default function AudioCard() {
-    const theme = useContext(ThemeContext);
+    // const theme = useContext(ThemeContext);
 
     return (
 

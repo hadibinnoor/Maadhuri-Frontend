@@ -5,15 +5,15 @@ export default function getAudio() {
 
 
     // // send api
-    // const sampleData = {
-    //     audio: 'http://103.156.188.31:8000/stream'
-    // }
+    const sampleData = {
+        audio: 'http://103.156.188.31:8000/stream'
+    }
 
-    // return new Promise(res => {
-    //     // res(sampleData)
-    //     setTimeout(() => {
-    //         res(sampleData);
+    return new Promise(res => {
+        // res(sampleData)
+        setTimeout(() => {
+            res(sampleData);
 
-    //     }, 5000);
-    // })
+        }, 5000);
+    })
 }

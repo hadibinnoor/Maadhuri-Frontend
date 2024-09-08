@@ -5,7 +5,7 @@ export const StyledBackdrop = styled.div`
     width: 100vw;
     height: 100vh;
     position: absolute;
-    background-color: ${({ theme }) => 'black'};
+    background-color: black;
 `
 export const StyledLoginBackground = styled.img`
     object-fit: cover;

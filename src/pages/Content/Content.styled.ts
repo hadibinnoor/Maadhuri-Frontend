@@ -79,7 +79,7 @@ export const StyledSequenceNode = styled.div`
     height: 90%;
     max-height: 90%;
     width: 25%;
-    min-width: 20%;
+    min-width: 290px;
     margin: 0 2rem;
     border-radius: 10px;
     /* margin: 2rem 2rem; */

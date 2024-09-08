@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { StyledContainer } from "../../components/Container/Container.styled";
 import Navbar from "../../components/Navbar/Navbar";
-import { LLMOutputPlaceholder, LLMOutputPlaceholderText, LLMValidateBtn, StyledGenerateBtnContainer, StyledLLMOutputContainer, StyledLLMScoreContainer, StyledParametersContainer, StyledParametersHeading, StyledParametersHeadingText, StyledParametersInfo, StyledTextArea, StyledValidateContainer, StyledValidateLeft, StyledValidateLeftParameters, StyledValidateLeftToggle, StyledValidateRight, ToggleBtn, ValidateBtnContainer } from "./Validate.styled";
+import { LLMOutputPlaceholder, LLMOutputPlaceholderText, StyledGenerateBtnContainer, StyledLLMOutputContainer, StyledParametersContainer, StyledParametersHeading, StyledParametersHeadingText, StyledTextArea, StyledValidateContainer, StyledValidateLeft, StyledValidateLeftParameters, StyledValidateRight } from "./Validate.styled";
 import Preview from "../../components/Preview/Preview";
 import getScripts from "../../api/getScripts";
-import { MdMessage } from "react-icons/md";
 
 import { StyledCircularProgress } from "../../components/Preview/Preview.styled";
 import { DataContext } from "../../contexts/data.context";
@@ -22,9 +21,9 @@ export default function Validate() {
     const [selectedParameter, setSelectedParameter] = useState<Boolean[]>(new Array(parameters.length).fill(false));
     const [doneLoadingData, setDoneLoadingData] = useState<boolean>(false);
     const [loadingData, setLoadingData] = useState<boolean>(false);
-    const { data, setData } = useContext(DataContext);
+    const { setData } = useContext(DataContext);
 
-    const handleParameterClick = (btn: string, i: number) => {
+    const handleParameterClick = (_btn: string, i: number) => {
         selectedParameter[i] = !selectedParameter[i]
 
         console.log(selectedParameter)

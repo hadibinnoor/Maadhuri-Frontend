@@ -1,29 +1,29 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { DataContext } from "../../contexts/data.context";
 import { StyledLLMOutput, StyledPreviewContainer, StyledPreviewNode } from "./Preview.styled";
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
+// import DialogActions from '@mui/material/DialogActions';
 
 import DialogTitle from '@mui/material/DialogTitle';
-import styled, { ThemeContext } from "styled-components";
-import { Box, CircularProgress, Switch } from "@mui/material";
+import { ThemeContext } from "styled-components";
+import { Box, CircularProgress } from "@mui/material";
 import { IoClose } from "react-icons/io5";
 import { StyledButton } from "../Button/Button.styled";
 import PreviewNode from "./PreviewNode";
 import AudioCard from "./AudioCard";
 import getAudio from "../../api/getAudio";
 
-const StyledSwitch = styled(Switch)`
-    ::before {
-        content: "HELLO WORLD"
-    }
+// const StyledSwitch = styled(Switch)`
+//     ::before {
+//         content: "HELLO WORLD"
+//     }
 
-    ::after {
-        content: "HLE NA"
-    }
+//     ::after {
+//         content: "HLE NA"
+//     }
 
-`
+// `
 
 
 
@@ -35,7 +35,7 @@ export default function Preview() {
     const defaultState: any = {}
     const { data, setData } = useContext(DataContext);
     const themeContext: any = useContext(ThemeContext);
-    const theme = useContext(themeContext);
+    // const theme = useContext(themeContext);
     const [loading, setLoading] = useState<boolean>(false);
     const [doneLoading, setDoneLoading] = useState<boolean>(false);
 
