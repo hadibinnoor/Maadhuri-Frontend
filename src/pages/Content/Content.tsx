@@ -34,7 +34,7 @@ const VisuallyHiddenInput = styled('input')({
 
 export default function Content() {
 
-    const baseurl = "https://ab28-14-139-189-168.ngrok-free.app"
+    const baseurl = "http://172.206.71.184"
     const alertContext = useContext(AlertContext);
     const scrollContainerRef = useRef<HTMLDivElement | null>(null);
     const [audioFiles, setAudioFiles] = useState<AudioFile[]>([]);
